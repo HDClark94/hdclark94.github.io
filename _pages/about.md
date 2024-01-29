@@ -9,18 +9,18 @@ profile:
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>253 Hugh Robson Building</p>
+    <p>George Square</p>
+    <p>Edinburgh, UK</p>
 
 news: true # includes a list of news items
-latest_posts: true # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
+latest_posts: false # includes a list of the newest posts
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
 Hi, I'm a research fellow at the University of Edinburgh working with Professor Matt Nolan to better understand spatial cognition through a combination of in-vivo electrophyisology and computational modelling approaches.
-More broadly I am acamedically interested in how the brain forges meaningful representations of the physical world to guide meaningful actions in the world.
+More broadly, I am interested in how the brain forges meaningful representations of the physical world to guide meaningful actions in the world.
 
 Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
 
