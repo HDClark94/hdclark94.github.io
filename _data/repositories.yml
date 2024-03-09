@@ -1,12 +1,7 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - hclark94
+  - MattNolanLab
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - MattNolanLab/eLife_Grid_anchoring_2024
+  - hclark94/Elrond
