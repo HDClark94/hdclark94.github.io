@@ -147,6 +147,7 @@ kramdown:
 include: ["_pages"]
 exclude:
   - bin
+  - scripts
   - Gemfile
   - Gemfile.lock
   - vendor
