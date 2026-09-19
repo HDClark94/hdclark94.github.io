@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Anchoring dynamics, and why the null result carries the argument
-date: 2026-09-19
+date: 2026-09-18
 description: Grid anchoring helps when an animal has to path integrate, and does nothing when a cue is available. That dissociation is worth more than the positive result alone, and it generalises into a test for whether any representation is actually used.
 tags: [grid-cells, path-integration, anchoring, reference-frames]
 toc:

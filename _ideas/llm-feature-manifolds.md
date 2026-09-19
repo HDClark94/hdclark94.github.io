@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Do language models carve the world into overlapping manifolds?
-date: 2026-09-18
+date: 2026-09-17
 description: If representations in a language model are low-dimensional manifolds superposed in one activation space, the brain tells us where to look for them — and warns us about the basis we use to find them.
 tags: [representation-geometry, interpretability, manifolds]
 toc:

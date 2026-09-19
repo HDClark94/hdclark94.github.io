@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Grid–hippocampal circuits and the capacity to build embedding manifolds
-date: 2026-09-17
+date: 2026-09-16
 description: The entorhinal–hippocampal system solves a capacity problem that embedding spaces also face. One of its solutions — a multi-scale phase code — already appears in transformers, under a different name.
 tags: [grid-cells, hippocampus, capacity, representation-geometry]
 toc:

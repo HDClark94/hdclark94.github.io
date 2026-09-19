@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cognition as overlapping manifolds, and what disease does to the geometry
-date: 2026-09-20
+date: 2026-09-19
 description: If cognition is a set of manifolds sharing a state space, disease is a change in the geometry of particular ones and neuromodulation is a change in their bounds. Drawing it makes the vague parts obvious.
 tags: [manifolds, neuromodulation, disease, representation-geometry]
 toc:
