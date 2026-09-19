@@ -2,9 +2,9 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Harry D. Clark # the website title (if blank, full name will be used instead)
-first_name: Harry
-middle_name: D.
+title: Dr Harry Clark # the website title (if blank, full name will be used instead)
+first_name: Dr
+middle_name: Harry
 last_name: Clark
 email: harrydclark91@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
