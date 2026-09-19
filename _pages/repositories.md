@@ -4,7 +4,7 @@ permalink: /repositories/
 title: repositories
 description: Code from my research, and the labs I work with.
 nav: true
-nav_order: 2
+nav_order: 3
 ---
 
 ## GitHub users

@@ -115,6 +115,11 @@ collections:
       layout: post
     output: true
     permalink: /news/:path/
+  ideas:
+    defaults:
+      layout: post
+    output: true
+    permalink: /ideas/:path/
 
 announcements:
   enabled: true
