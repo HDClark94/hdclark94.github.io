@@ -2,96 +2,101 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
-
-- title: Education
-  type: time_table
-  contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
-      description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
-      description:
-        - Description 1.
-        - Description 2.
+      value: Harry D. Clark
+    - name: Position
+      value: Postdoctoral Research Fellow, University of Edinburgh
+    - name: Research
+      value: Spatial cognition, medial entorhinal cortex, in-vivo electrophysiology, computational modelling
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Postdoctoral Research Fellow
+      institution: University of Edinburgh
+      department: Centre for Discovery Brain Sciences
+      year: 2023 - now
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
-      description:
-        - Description 1.
-        - Description 2.
+        - Research in the lab of Prof. Matthew Nolan, combining in-vivo electrophysiology with computational modelling to study how the brain represents space.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
+- title: Education
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: PhD, Neuroscience
+      institution: University of Edinburgh
+      department: Centre for Discovery Brain Sciences
+      year: 2023
+      description:
+        - Funded by the Medical Research Council Precision Medicine PhD programme.
+      linkitems:
+        - linkname: thesis
+          link: /assets/pdf/Thesis.pdf
 
-- title: Honors and Awards
+- title: Publications
   type: time_table
   contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+    - title: Task-anchored grid cell firing is selectively associated with successful path integration-dependent behaviour
+      institution: eLife
+      year: 2024
+      description:
+        - Clark, H. and Nolan, M. F.
+      linkitems:
+        - linkname: paper
+          link: https://elifesciences.org/articles/89356
+        - linkname: code
+          link: https://github.com/MattNolanLab/eLife_Grid_anchoring_2024
+    - title: Spatial representation by ramping activity of neurons in the retrohippocampal cortex
+      institution: Current Biology
+      year: 2022
+      description:
+        - Tennant, S. A., Clark, H., Hawes, I., Tam, W. K., Hua, J., Yang, W., Gerlei, K. Z., Wood, E. R. and Nolan, M. F.
+      linkitems:
+        - linkname: paper
+          link: https://doi.org/10.1016/j.cub.2022.08.050
 
-- title: Academic Interests
-  type: nested_list
+- title: Open Source
+  type: time_table
   contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+    - title: <a href="https://github.com/hdclark94/Elrond">Elrond</a>
+      year: 2024 - now
+      description:
+        - A comprehensive pipeline for processing electrophysiological recordings and behaviour in rodents.
+    - title: <a href="https://github.com/MattNolanLab/eLife_Grid_anchoring_2024">eLife_Grid_anchoring_2024</a>
+      year: 2024
+      description:
+        - Code for reproducing the analyses and figures in Clark and Nolan (2024).
 
-- title: Other Interests
-  type: list
+- title: Conferences
+  type: time_table
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - title: FENS Forum
+      year: 2024
+      location: Vienna
+# -----------------------------------------------------------------------------
+# Scaffolding for sections you may want to add. Uncomment and fill in.
+# Supported `type` values: map, list, nested_list, time_table, list_groups.
+# -----------------------------------------------------------------------------
+#
+# - title: Honors and Awards
+#   type: time_table
+#   contents:
+#     - year: 2023
+#       items:
+#         - Award name
+#
+# - title: Teaching and Supervision
+#   type: time_table
+#   contents:
+#     - title: Role
+#       institution: University of Edinburgh
+#       year: 2023 - now
+#
+# - title: Skills
+#   type: list
+#   contents:
+#     - Python, MATLAB, R
+#     - In-vivo electrophysiology (Neuropixels), histology
+#
+# - title: Other Interests
+#   type: list
+#   contents:
+#     - Hobbies

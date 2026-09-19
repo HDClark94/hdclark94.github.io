@@ -6,6 +6,3 @@ related_posts: false
 ---
 
 My work on grid anchoring and its influence on path integration has been published in eLife :D
-
-
-

@@ -6,5 +6,3 @@ related_posts: false
 ---
 
 I will be presenting at FENS 2024 in Vienna
-
-

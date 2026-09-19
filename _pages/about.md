@@ -11,10 +11,9 @@ profile:
   more_info: >
 
 news: true # includes a list of news items
-latest_posts: false # includes a list of the newest posts
-selected_papers: false # includes a list of papers marked as "selected={true}"
+selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi, I'm a postdoctural researcher working with Professor Matt Nolan to better understand spatial cognition through a combination of in-vivo electrophyisology and computational modelling approaches.
-More broadly, I am interested in how the brain forges meaningful representations of the physical world to guide meaningful actions in the world.
+Hi, I'm a postdoctoral researcher working with Professor Matt Nolan to better understand spatial cognition through a combination of in-vivo electrophysiology and computational modelling approaches.
+More broadly, I am interested in how the brain forges meaningful representations of the physical world to guide action within it.
