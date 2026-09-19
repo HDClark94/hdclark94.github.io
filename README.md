@@ -1,6 +1,6 @@
 # hdclark94.github.io
 
-Personal academic website for **Harry D. Clark**, postdoctoral researcher at the University of Edinburgh.
+Personal academic website for **Dr Harry Clark**, systems neuroscience researcher at the Medical University of Vienna.
 
 Live at <https://hdclark94.github.io>.
 
