@@ -27,10 +27,16 @@ identity — the same code, operating over a different range.
 
 <div class="row mt-3 mb-1">
   <div class="col-sm-12">
+    {% assign fig_alt = "Three 3D panels, each showing four transparent rectangular planes intersecting at a common origin at different angles. In the typical panel the four labelled planes sit at default lengths. In the disrupted panel the spatial and episodic planes are visibly shorter, with dotted outlines marking the extent they had before. In the neuromodulated panel the reward valuation and neuromodulatory planes extend past their dotted default outlines, and the tick marks ruled across them are more widely spaced." %}
     <img
-      src="{{ '/assets/img/ideas/manifold-states.svg' | relative_url }}"
-      class="img-fluid rounded"
-      alt="Three 3D panels, each showing five transparent rectangular planes intersecting at a common origin at different angles. In the typical panel the five labelled planes sit at default lengths. In the disrupted panel the spatial and episodic planes are visibly shorter, with dotted outlines marking the extent they had before. In the neuromodulated panel the reward valuation and neuromodulatory planes extend past their dotted default outlines, and the tick marks ruled across them are more widely spaced."
+      src="{{ '/assets/img/ideas/manifold-states-light.svg' | relative_url }}"
+      class="img-fluid rounded repo-img-light"
+      alt="{{ fig_alt }}"
+    />
+    <img
+      src="{{ '/assets/img/ideas/manifold-states-dark.svg' | relative_url }}"
+      class="img-fluid rounded repo-img-dark"
+      alt="{{ fig_alt }}"
     />
   </div>
 </div>

@@ -1,21 +1,26 @@
-{% assign repo_url = include.repository | split: '/' %}
-{% if site.data.repositories.github_users contains repo_url.first %}
-  {% assign show_owner = false %}
-{% else %}
-  {% assign show_owner = true %}
-{% endif %}
-
-<div class="repo p-2 text-center">
-  <a href="https://github.com/{{ include.repository }}">
-    <img
-      class="repo-img-light w-100"
-      alt="{{ include.repository }}"
-      src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url[0] }}&repo={{ repo_url[1] }}&theme={{ site.repo_theme_light }}&show_owner={{ show_owner }}"
-    >
-    <img
-      class="repo-img-dark w-100"
-      alt="{{ include.repository }}"
-      src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url[0] }}&repo={{ repo_url[1] }}&theme={{ site.repo_theme_dark }}&show_owner={{ show_owner }}"
-    >
+{% assign r = null %}
+{% for candidate in site.data.github.repos %}
+  {% assign a = candidate.full_name | downcase %}
+  {% assign b = include.repository | downcase %}
+  {% if a == b %}
+    {% assign r = candidate %}
+  {% endif %}
+{% endfor %}
+{% if r %}
+  <a class="gh-card gh-repo" href="{{ r.url }}" title="{{ r.full_name }} on GitHub">
+    <div class="gh-title">
+      <i class="fa-solid fa-book-bookmark"></i>
+      <span class="gh-owner">{{ r.owner }}/</span>{{ r.name }}
+    </div>
+    {% if r.description != '' %}
+      <div class="gh-desc">{{ r.description }}</div>
+    {% endif %}
+    <div class="gh-meta">
+      {% if r.language != '' -%}
+        <span><span class="gh-dot"></span>{{ r.language }}</span>
+      {%- endif %}
+      <span><i class="fa-regular fa-star"></i> {{ r.stars }}</span>
+      <span><i class="fa-solid fa-code-fork"></i> {{ r.forks }}</span>
+    </div>
   </a>
-</div>
+{% endif %}

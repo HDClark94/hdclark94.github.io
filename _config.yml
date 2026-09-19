@@ -8,8 +8,8 @@ middle_name: D.
 last_name: Clark
 email: harrydclark91@gmail.com
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Postdoctoral researcher at the University of Edinburgh, studying spatial cognition
-  with in-vivo electrophysiology and computational modelling.
+  Systems neuroscience researcher at the Medical University of Vienna, studying
+  spatial cognition with in-vivo electrophysiology and computational modelling.
 footer_text: >
 keywords: neuroscience, spatial cognition, grid cells, entorhinal cortex, electrophysiology, computational modelling
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
@@ -18,18 +18,6 @@ url: https://hdclark94.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
-
-# -----------------------------------------------------------------------------
-# Theme
-# -----------------------------------------------------------------------------
-
-# repo color theme
-repo_theme_light: default # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_theme_dark: dark # https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md
-repo_trophies:
-  enabled: true
-  theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
-  theme_dark: gitdimmed # https://github.com/ryo-ma/github-profile-trophy
 
 # -----------------------------------------------------------------------------
 # Layout
@@ -276,7 +264,7 @@ enable_google_verification: false # enables google site verification
 enable_bing_verification: false # enables bing site verification
 enable_math: true # enables math typesetting (uses MathJax)
 enable_tooltips: false # enables automatic tooltip links generated for each section titles on pages and posts
-enable_darkmode: false # enables switching between light/dark modes
+enable_darkmode: true # enables switching between light/dark modes
 enable_navbar_social: false # enables displaying social links in the navbar on the about page
 enable_medium_zoom: true # enables image zoom feature (as on medium.com)
 enable_progressbar: true # enables a horizontal progress bar linked to the vertical scroll position

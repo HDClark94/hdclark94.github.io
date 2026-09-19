@@ -1,14 +1,24 @@
-<div class="repo p-2 text-center">
-  <a href="https://github.com/{{ include.username }}">
-    <img
-      class="repo-img-light w-100"
-      alt="{{ include.username }}"
-      src="https://github-readme-stats.vercel.app/api/?username={{ include.username }}&theme={{ site.repo_theme_light }}&show_icons=true"
-    >
-    <img
-      class="repo-img-dark w-100"
-      alt="{{ include.username }}"
-      src="https://github-readme-stats.vercel.app/api/?username={{ include.username }}&theme={{ site.repo_theme_dark }}&show_icons=true"
-    >
+{% assign u = null %}
+{% for candidate in site.data.github.users %}
+  {% assign a = candidate.login | downcase %}
+  {% assign b = include.username | downcase %}
+  {% if a == b %}
+    {% assign u = candidate %}
+  {% endif %}
+{% endfor %}
+{% if u %}
+  <a class="gh-card gh-user" href="{{ u.url }}" title="{{ u.login }} on GitHub">
+    <img class="gh-avatar" src="{{ u.avatar }}" alt="" loading="lazy" width="56" height="56">
+    <div class="gh-user-body">
+      <div class="gh-title">{{ u.name }}</div>
+      <div class="gh-login">@{{ u.login }}</div>
+      {% if u.bio != '' %}
+        <div class="gh-desc">{{ u.bio }}</div>
+      {% endif %}
+      <div class="gh-meta">
+        <span><i class="fa-solid fa-book-bookmark"></i> {{ u.public_repos }} repositories</span>
+        <span><i class="fa-solid fa-user-group"></i> {{ u.followers }} followers</span>
+      </div>
+    </div>
   </a>
-</div>
+{% endif %}

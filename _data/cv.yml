@@ -4,17 +4,22 @@
     - name: Full Name
       value: Harry D. Clark
     - name: Position
-      value: Postdoctoral Research Fellow, University of Edinburgh
+      value: Systems neuroscience researcher, Medical University of Vienna
     - name: Research
       value: Spatial cognition, medial entorhinal cortex, in-vivo electrophysiology, computational modelling
 
 - title: Experience
   type: time_table
   contents:
+    - title: Systems Neuroscience Researcher
+      institution: Medical University of Vienna
+      year: 2026 - now
+      description:
+        - Working with the labs of Sanja Bauer Mikulovic and Balázs Hangya.
     - title: Postdoctoral Research Fellow
       institution: University of Edinburgh
       department: Centre for Discovery Brain Sciences
-      year: 2023 - now
+      year: 2023 - 2026
       description:
         - Research in the lab of Prof. Matthew Nolan, combining in-vivo electrophysiology with computational modelling to study how the brain represents space.
 
