@@ -30,16 +30,16 @@ identity — the same code, operating over a different range.
     <img
       src="{{ '/assets/img/ideas/manifold-states.svg' | relative_url }}"
       class="img-fluid rounded"
-      alt="Three 3D panels of rectangular planes intersecting at a common origin. In the typical panel, five labelled planes sit at default lengths. In the disrupted panel, the spatial and episodic planes are contracted, with dotted outlines marking their default extent. In the neuromodulated panel, the reward valuation and neuromodulatory planes extend beyond their default outlines and their internal tick marks are more widely spaced."
+      alt="Three 3D panels, each a perspective box containing five shaded slabs that intersect at a common origin at different angles. In the typical panel the five labelled slabs sit at default lengths. In the disrupted panel the spatial and episodic slabs are visibly shorter, with dotted outlines marking the extent they had before. In the neuromodulated panel the reward valuation and neuromodulatory slabs extend past their dotted default outlines, and the tick marks ruled across them are more widely spaced."
     />
   </div>
 </div>
 <div class="caption">
-  Each plane is a manifold, intersecting the others at a common origin. Plane
-  length is representational extent; the tick marks along each plane are spaced
+  Each slab is a manifold, intersecting the others at a common origin. Slab
+  length is representational extent; the ticks ruled across each slab are spaced
   by resolution. <strong>Disrupted</strong>: two manifolds contract while tick
   spacing stays fixed, so fewer distinctions fit. <strong>Neuromodulated</strong>:
-  one axis is driven past its default bound, and the ticks coarsen — range is
+  one axis is driven past its default bound and the ticks coarsen — range is
   bought with precision. Dotted outlines mark default extent. Schematic, not data.
 </div>
 

@@ -34,6 +34,20 @@ SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
 INK_SOFT = "#52514e"
 GHOST = "#b6b5af"
+PANE = "#f2f2ee"
+PANE_EDGE = "#dededa"
+GRIDLINE = "#e4e3dd"
+
+THICK = 0.042  # slab half-thickness: gives each manifold visible side faces
+LIGHT = np.array([0.45, 0.75, 0.50])  # key light direction
+LIGHT = LIGHT / np.linalg.norm(LIGHT)
+
+
+def shade(colour, facing):
+    """Lambertian-ish tint: face-on reads light, edge-on reads dark."""
+    rgb = np.array(matplotlib.colors.to_rgb(colour))
+    k = 0.58 + 0.42 * float(abs(facing))
+    return tuple(np.clip(rgb * k + (1.0 - k) * 0.16, 0, 1))
 
 # label, colour, principal axis (length), width direction, half-len, half-wid
 MANIFOLDS = [
@@ -42,35 +56,59 @@ MANIFOLDS = [
     ("reward valuation", "#1baf7a", (0.06, 0.10, 1.00), (1.00, 0.20, 0.00), 0.88, 0.15, "reward"),
     ("attentional selection", "#4a3aa7", (0.80, 0.66, -0.52), (0.30, -0.60, -0.30), 0.86, 0.15, "attention"),
 ]
-NEUROMOD = ("neuromodulatory tone", "#6b6b66", (-0.70, 0.58, 0.62), (0.60, 0.75, -0.02), 0.78, 0.13, "neuromod.")
+NEUROMOD = ("neuromodulatory tone", "#93928c", (-0.70, 0.58, 0.62), (0.60, 0.75, -0.02), 0.78, 0.13, "neuromod.")
 
 TICK = 0.16  # default spacing between axis ticks = default resolution
 
 
 def frame(axis, width_dir):
-    """Orthonormal (u, v): u along the principal axis, v across it."""
+    """Orthonormal (u, v, n): u along the principal axis, v across, n normal."""
     u = np.array(axis, float)
     u /= np.linalg.norm(u)
     v = np.array(width_dir, float)
     v = v - np.dot(v, u) * u
     v /= np.linalg.norm(v)
-    return u, v
+    return u, v, np.cross(u, v)
 
 
-def tessellate(u, v, half_len, half_wid, nu=18, nv=3):
-    """Split the rectangle into small quads so depth sorting behaves."""
+def slab_faces(u, v, n, half_len, half_wid, nu=13, nv=2):
+    """A thin box as (quad, outward normal) pairs.
+
+    The broad faces are tessellated so matplotlib's per-polygon depth sort
+    behaves where slabs intersect; the four narrow sides are what make the
+    solid read as solid.
+    """
     us = np.linspace(-half_len, half_len, nu + 1)
     vs = np.linspace(-half_wid, half_wid, nv + 1)
-    return [
-        [
-            us[i] * u + vs[j] * v,
-            us[i + 1] * u + vs[j] * v,
-            us[i + 1] * u + vs[j + 1] * v,
-            us[i] * u + vs[j + 1] * v,
-        ]
-        for i in range(nu)
-        for j in range(nv)
-    ]
+    t = THICK * n
+    faces = []
+    for sign in (1, -1):
+        for i in range(nu):
+            for j in range(nv):
+                faces.append((
+                    [
+                        us[i] * u + vs[j] * v + sign * t,
+                        us[i + 1] * u + vs[j] * v + sign * t,
+                        us[i + 1] * u + vs[j + 1] * v + sign * t,
+                        us[i] * u + vs[j + 1] * v + sign * t,
+                    ],
+                    sign * n,
+                ))
+    for sign in (1, -1):  # ends
+        e = sign * half_len * u
+        faces.append((
+            [e - half_wid * v - t, e + half_wid * v - t,
+             e + half_wid * v + t, e - half_wid * v + t],
+            sign * u,
+        ))
+    for sign in (1, -1):  # long sides
+        w = sign * half_wid * v
+        faces.append((
+            [w - half_len * u - t, w + half_len * u - t,
+             w + half_len * u + t, w - half_len * u + t],
+            sign * v,
+        ))
+    return faces
 
 
 def outline(u, v, half_len, half_wid):
@@ -93,33 +131,40 @@ def axis_ticks(u, v, half_len, half_wid, spacing):
     return segs
 
 
-def draw_plane(ax, u, v, half_len, half_wid, colour, spacing, dashed=False, ticks=True):
+def draw_plane(ax, u, v, n, half_len, half_wid, colour, spacing, dashed=False, ticks=True):
+    faces = slab_faces(u, v, n, half_len, half_wid)
+    polys = [f for f, _ in faces]
+    colours = [shade(colour, np.dot(nn, LIGHT)) for _, nn in faces]
     ax.add_collection3d(
         Poly3DCollection(
-            tessellate(u, v, half_len, half_wid),
-            facecolor=colour,
+            polys,
+            facecolors=colours,
             edgecolor="none",
-            alpha=0.20,
+            alpha=0.80,
             zsort="average",
         )
     )
-    ax.add_collection3d(
-        Line3DCollection(
-            outline(u, v, half_len, half_wid),
-            colors=colour,
-            linewidths=1.5,
-            linestyles=(0, (4, 2)) if dashed else "-",
-        )
-    )
-    if ticks:
+    for sign in (1, -1):
         ax.add_collection3d(
             Line3DCollection(
-                axis_ticks(u, v, half_len, half_wid, spacing),
+                [[a + sign * THICK * n, b + sign * THICK * n]
+                 for a, b in outline(u, v, half_len, half_wid)],
                 colors=colour,
-                linewidths=0.55,
-                alpha=0.5,
+                linewidths=1.1,
+                linestyles=(0, (4, 2)) if dashed else "-",
             )
         )
+    if ticks:
+        segs = axis_ticks(u, v, half_len, half_wid, spacing)
+        for sign in (1, -1):
+            ax.add_collection3d(
+                Line3DCollection(
+                    [[a + sign * THICK * n, b + sign * THICK * n] for a, b in segs],
+                    colors=shade(colour, 0.0),
+                    linewidths=0.85,
+                    alpha=0.95,
+                )
+            )
 
 
 def draw_ghost(ax, u, v, half_len, half_wid, colour=GHOST):
@@ -137,30 +182,44 @@ def draw_ghost(ax, u, v, half_len, half_wid, colour=GHOST):
 def panel(ax, subtitle, scales, spacings, ghosts, label=False):
     entries = MANIFOLDS + [NEUROMOD]
     for idx, (name, colour, axis, width_dir, half_len, half_wid, short) in enumerate(entries):
-        u, v = frame(axis, width_dir)
+        u, v, n = frame(axis, width_dir)
         k = scales.get(idx, 1.0)
         if idx in ghosts:
             draw_ghost(ax, u, v, half_len, half_wid, colour)
         draw_plane(
-            ax, u, v, half_len * k, half_wid, colour,
+            ax, u, v, n, half_len * k, half_wid, colour,
             spacings.get(idx, TICK), dashed=(idx == 4), ticks=(idx != 4),
         )
         if label:
-            tip = u * (half_len * k + 0.11)
+            tip = u * (half_len * k + 0.07)
             ax.text(
                 tip[0], tip[1], tip[2], short,
-                color=colour, fontsize=8.0, ha="center", va="center",
-                fontweight="medium", zorder=20,
+                color=shade(colour, 0.0), fontsize=7.8, ha="center", va="center",
+                fontweight="bold", zorder=30, clip_on=False,
             )
 
-    lim = 1.02
+    lim = 1.05
     ax.set_xlim(-lim, lim)
     ax.set_ylim(-lim, lim)
     ax.set_zlim(-lim, lim)
-    ax.set_box_aspect((1, 1, 1), zoom=1.42)
-    ax.view_init(elev=20, azim=-62)
-    ax.set_axis_off()
-    ax.scatter([0], [0], [0], color=INK, s=11, depthshade=False)
+    ax.set_box_aspect((1, 1, 1), zoom=1.16)
+    ax.view_init(elev=22, azim=-58)
+    ax.set_proj_type("persp", focal_length=0.42)  # real convergence, not near-flat
+
+    # A faint room: panes and grid give the eye something to read depth against.
+    for pane_axis in (ax.xaxis, ax.yaxis, ax.zaxis):
+        pane_axis.pane.set_facecolor(PANE)
+        pane_axis.pane.set_edgecolor(PANE_EDGE)
+        pane_axis.pane.set_alpha(1.0)
+        pane_axis._axinfo["grid"].update(color=GRIDLINE, linewidth=0.6)
+        pane_axis.line.set_color(PANE_EDGE)
+    ax.grid(True)
+    for setter in (ax.set_xticks, ax.set_yticks, ax.set_zticks):
+        setter([-1, -0.5, 0, 0.5, 1])
+    for setter in (ax.set_xticklabels, ax.set_yticklabels, ax.set_zticklabels):
+        setter([])
+    ax.tick_params(length=0)
+    ax.scatter([0], [0], [0], color=INK, s=13, depthshade=False)
     ax.text2D(
         0.5, -0.02, subtitle, transform=ax.transAxes, ha="center",
         color=INK_SOFT, fontsize=8.7,
