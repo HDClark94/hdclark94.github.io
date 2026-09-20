@@ -1,0 +1,13 @@
+# Python dependencies for the asset-generation scripts in this directory.
+# Nothing here is needed to build or serve the site - only to regenerate the
+# figures and refresh the GitHub data.
+#
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install -r scripts/requirements.txt
+#
+# Lower bounds, not pins. matplotlib >= 3.6 is required for
+# Axes3D.set_proj_type(focal_length=...) and set_box_aspect(zoom=...), both of
+# which the manifold schematic relies on.
+
+matplotlib>=3.6
+numpy>=1.24

@@ -37,6 +37,9 @@ import matplotlib
 
 matplotlib.use("Agg")
 matplotlib.rcParams["svg.fonttype"] = "path"  # embed glyphs so rendering is stable
+# Fixed salt + no timestamp => regenerating an unchanged figure produces an
+# identical file, so a diff in git means the design actually changed.
+matplotlib.rcParams["svg.hashsalt"] = "hdclark94.github.io"
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
 
@@ -234,7 +237,7 @@ def render(mode):
 
     out = pathlib.Path(__file__).resolve().parent.parent / "assets" / "img" / "ideas"
     out.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out / f"manifold-states-{mode}.svg", format="svg", facecolor=T["surface"])
+    fig.savefig(out / f"manifold-states-{mode}.svg", format="svg", facecolor=T["surface"], metadata={"Date": None})
     print("wrote", out / f"manifold-states-{mode}.svg")
     # Raster copy is for eyeballing locally; only the SVGs are committed.
     if "--png" in sys.argv:

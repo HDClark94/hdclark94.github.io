@@ -136,6 +136,7 @@ include: ["_pages"]
 exclude:
   - bin
   - scripts
+  - Makefile
   - Gemfile
   - Gemfile.lock
   - vendor

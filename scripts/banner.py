@@ -69,13 +69,17 @@ def render(mode):
         ])
 
         colour = palette[i % len(palette)]
-        ax.add_patch(Polygon(quad, closed=True, facecolor=colour,
-                             edgecolor="none", alpha=T["alpha"], zorder=i))
+        # clip_on=False: the axes already fills the figure, so the clip is
+        # redundant - and matplotlib derives clip-path ids unstably, which would
+        # make every regeneration produce a spurious diff.
+        ax.add_patch(Polygon(quad, closed=True, facecolor=colour, edgecolor="none",
+                             alpha=T["alpha"], zorder=i, clip_on=False))
         ax.add_patch(Polygon(quad, closed=True, fill=False, edgecolor=colour,
-                             linewidth=0.9, alpha=T["line_alpha"], zorder=i + 0.5))
+                             linewidth=0.9, alpha=T["line_alpha"], zorder=i + 0.5,
+                             clip_on=False))
 
     out = pathlib.Path(__file__).resolve().parent.parent / "assets" / "img"
-    fig.savefig(out / f"banner-{mode}.svg", format="svg", facecolor=T["surface"])
+    fig.savefig(out / f"banner-{mode}.svg", format="svg", facecolor=T["surface"], metadata={"Date": None})
     print("wrote", out / f"banner-{mode}.svg")
     if "--png" in sys.argv:
         fig.savefig(out / f"banner-{mode}.png", dpi=110, facecolor=T["surface"])
